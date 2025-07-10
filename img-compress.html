@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free responsive online image compression and editing tool with brightness, crop, stickers, and more. SEO optimized with AdSense integration.">
+  <meta name="keywords" content="image compression, online image editor, brightness, crop, stickers, background color">
+  <meta name="author" content="YourName">
+  <title>Online Image Compressor & Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .tools, .ads, .preview {
+      margin: 1rem 0;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    canvas {
+      max-width: 100%;
+      border: 1px solid #ccc;
+    }
+    .controls label, .controls input, .controls button {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    .ads {
+      text-align: center;
+      background: #eee;
+      padding: 10px;
+    }
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Image Compressor & Editor</h1>
+    <p>Compress, edit, and enhance your images online!</p>
+  </header>  <div class="container">
+    <div class="ads">
+      <!-- Google AdSense -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div><div class="tools">
+  <input type="file" id="upload" accept="image/*">
+  <label>Compression Level:</label>
+  <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8">
+  <label>Brightness:</label>
+  <input type="range" id="brightness" min="0.5" max="2" step="0.1" value="1">
+  <label>Background Color:</label>
+  <input type="color" id="bgColor" value="#ffffff">
+  <label>Text:</label>
+  <input type="text" id="imgText" placeholder="Enter text">
+  <button onclick="addText()">Add Text</button>
+  <label>Crop:</label>
+  <input type="number" id="cropX" placeholder="X"> <input type="number" id="cropY" placeholder="Y">
+  <input type="number" id="cropW" placeholder="Width"> <input type="number" id="cropH" placeholder="Height">
+  <button onclick="cropImage()">Crop</button>
+  <button onclick="downloadImage()">Download Compressed Image</button>
+</div>
+
+<div class="preview">
+  <canvas id="canvas"></canvas>
+</div>
+
+<div class="ads">
+  <!-- Additional Ad Unit -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="0987654321"
+       data-ad-format="auto"></ins>
+</div>
+
+  </div>  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let image = new Image();
+    let originalImageData = null;
+
+    document.getElementById('upload').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = event => {
+          image.onload = () => {
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+            originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          };
+          image.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('brightness').addEventListener('input', () => {
+      if (!originalImageData) return;
+      const brightness = parseFloat(document.getElementById('brightness').value);
+      const imageData = new ImageData(new Uint8ClampedArray(originalImageData.data), originalImageData.width, originalImageData.height);
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        imageData.data[i] *= brightness;
+        imageData.data[i + 1] *= brightness;
+        imageData.data[i + 2] *= brightness;
+      }
+      ctx.putImageData(imageData, 0, 0);
+    });
+
+    document.getElementById('bgColor').addEventListener('input', e => {
+      const color = e.target.value;
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0);
+    });
+
+    function cropImage() {
+      const x = parseInt(document.getElementById('cropX').value);
+      const y = parseInt(document.getElementById('cropY').value);
+      const w = parseInt(document.getElementById('cropW').value);
+      const h = parseInt(document.getElementById('cropH').value);
+      const cropped = ctx.getImageData(x, y, w, h);
+      canvas.width = w;
+      canvas.height = h;
+      ctx.putImageData(cropped, 0, 0);
+    }
+
+    function addText() {
+      const text = document.getElementById('imgText').value;
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "black";
+      ctx.fillText(text, 50, 50);
+    }
+
+    function downloadImage() {
+      const quality =
