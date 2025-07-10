@@ -1,106 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Online Image and PDF Tools - Compress, Convert, Edit and Manage your files easily.">
-  <title>My Tools - Image & PDF Utilities</title>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>MyTools – Image & PDF Utilities</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .tool-card:hover {
-      transform: scale(1.03);
-      transition: 0.3s;
-    }
+    .tool-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">MyTools</h1>
-      <nav class="hidden md:flex gap-6">
+  <header class="bg-white shadow-md sticky top-0">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-indigo-600">MyTools</a>
+      <nav class="hidden md:flex space-x-6">
         <a href="#image-tools" class="hover:text-indigo-600">Image Tools</a>
         <a href="#pdf-tools" class="hover:text-indigo-600">PDF Tools</a>
         <a href="#contact" class="hover:text-indigo-600">Contact</a>
       </nav>
-      <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+      <button class="md:hidden" onclick="navToggle()">☰</button>
     </div>
-    <!-- Mobile Nav -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <a href="#image-tools" class="block py-2">Image Tools</a>
-      <a href="#pdf-tools" class="block py-2">PDF Tools</a>
-      <a href="#contact" class="block py-2">Contact</a>
+    <div id="mobileNav" class="md:hidden hidden px-4 pb-4 space-y-2">
+      <a href="#image-tools" class="block">Image Tools</a>
+      <a href="#pdf-tools" class="block">PDF Tools</a>
+      <a href="#contact" class="block">Contact</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="text-center py-16 bg-indigo-50">
-    <h2 class="text-4xl font-bold text-indigo-700 mb-4">All-in-One Image & PDF Tool Suite</h2>
-    <p class="max-w-xl mx-auto text-lg mb-6">Easily compress, convert, and manage images & PDFs online for free.</p>
-    <input type="text" placeholder="Search Tools..." class="w-80 px-4 py-2 border rounded shadow-sm" />
+  <!-- Hero -->
+  <section class="bg-indigo-50 py-20 text-center">
+    <h1 class="text-5xl font-bold text-indigo-700">Powerful Image & PDF Tools</h1>
+    <p class="mt-4 text-lg text-gray-600">Compress, convert, edit, and manage your files effortlessly.</p>
+    <a href="#image-tools" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700">
+      Get Started
+    </a>
   </section>
 
-  <!-- Ad space -->
-  <div class="max-w-4xl mx-auto my-6 px-4">
-    <div class="bg-gray-200 text-center py-4 rounded">
-      <!-- Google Adsense Placeholder -->
-      <p class="text-gray-500">Ad Space – Place your AdSense code here</p>
-    </div>
-  </div>
-
-  <!-- Image Tools -->
-  <section id="image-tools" class="py-12 px-4">
-    <h3 class="text-2xl font-bold text-center text-indigo-600 mb-8">Image Tools</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-  <a href="/Tool/img-compress.html" class="block hover:shadow-lg transition-transform transform hover:scale-105">
-    <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-      <h4 class="font-semibold text-lg">Image Compressor</h4>
-      <p class="text-sm text-gray-500">Reduce image size without quality loss.</p>
-    </div>
-  </a>
-</div>
-      <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-        <h4 class="font-semibold text-lg">Crop Image</h4>
-        <p class="text-sm text-gray-500">Crop your image online in seconds.</p>
-      </div>
-      <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-        <h4 class="font-semibold text-lg">Image Brightness Adjust</h4>
-        <p class="text-sm text-gray-500">Increase or decrease brightness easily.</p>
-      </div>
-      <!-- Add more tools here -->
-    </div>
-  </section>
-
-  <!-- PDF Tools -->
-  <section id="pdf-tools" class="py-12 px-4 bg-gray-100">
-    <h3 class="text-2xl font-bold text-center text-indigo-600 mb-8">PDF Tools</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-        <h4 class="font-semibold text-lg">Merge PDFs</h4>
-        <p class="text-sm text-gray-500">Combine multiple PDF files into one.</p>
-      </div>
-      <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-        <h4 class="font-semibold text-lg">PDF to Word</h4>
-        <p class="text-sm text-gray-500">Convert your PDFs to editable Word files.</p>
-      </div>
-      <div class="tool-card bg-white shadow rounded-lg p-4 text-center">
-        <h4 class="font-semibold text-lg">Compress PDF</h4>
-        <p class="text-sm text-gray-500">Reduce PDF file size quickly.</p>
-      </div>
-      <!-- Add more tools -->
+  <!-- Features -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <a href="/Tool/img-compress.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-compress.svg" alt="Compress" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">Image Compressor</h3>
+        <p class="text-gray-500">Reduce image size without losing quality.</p>
+      </a>
+      <a href="/Tool/img-crop.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-crop.svg" alt="Crop" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">Crop Image</h3>
+        <p class="text-gray-500">Crop images online in seconds.</p>
+      </a>
+      <a href="/Tool/img-brightness.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-brightness.svg" alt="Brightness" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">Adjust Brightness</h3>
+        <p class="text-gray-500">Easily tweak image brightness.</p>
+      </a>
+      <!-- PDF Tools -->
+      <a href="/Tool/pdf-merge.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-merge.svg" alt="Merge" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">Merge PDFs</h3>
+        <p class="text-gray-500">Combine multiple PDF files into one.</p>
+      </a>
+      <a href="/Tool/pdf-to-word.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-pdf2word.svg" alt="PDF to Word" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">PDF to Word</h3>
+        <p class="text-gray-500">Convert PDFs to editable Word files.</p>
+      </a>
+      <a href="/Tool/pdf-compress.html" class="tool-card bg-white rounded-lg p-6 text-center transition transform hover:scale-105">
+        <img src="your-icon-pdf-compress.svg" alt="PDF Compress" class="mx-auto mb-4 w-16 h-16">
+        <h3 class="text-xl font-semibold mb-2">Compress PDF</h3>
+        <p class="text-gray-500">Shrink PDF file size quickly.</p>
+      </a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer id="contact" class="bg-indigo-600 text-white text-center py-8 mt-12">
-    <h4 class="text-xl font-semibold mb-2">Contact Us</h4>
-    <p>Email: support@mytools.com | &copy; 2025 MyTools</p>
+  <!-- Contact -->
+  <footer id="contact" class="bg-indigo-600 text-white text-center py-12">
+    <p>Email us at <a href="mailto:support@mytools.com" class="underline">support@mytools.com</a></p>
+    <p class="mt-4">&copy; 2025 MyTools</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Mobile nav toggle already included above
+    function navToggle(){
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    }
   </script>
-
 </body>
 </html>
